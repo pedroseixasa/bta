@@ -1,0 +1,291 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+
+ul {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  list-style-type: none;
+}
+
+html, body {
+    font-size: 16px;
+    height: 100%;
+  }
+
+  @media (min-width: 600px){
+  .navbar-expand-lg .navbar-collapse {
+      display: flex !important;
+      flex-basis: auto;
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  }
+
+@media only screen and (max-width: 390px) {
+  /*/////// For mobile phones: /////*/
+
+  html, body {
+    font-size: 16px;
+    height: 100%;
+  }
+
+  .container-fluid{
+    height: auto;
+    width: auto;
+  }
+
+  #ok{
+    width: 70px;
+  }
+
+  p{
+
+    font-size: 12px !important;
+
+  }
+    i { 
+      -webkit-text-stroke: 1px; 
+      font-size: 15px !important;
+      color: #be1e2d;
+  } 
+  .linkbackbase{
+   
+    color: #be1e2d;
+    font-size: 11px !important;
+ 
+}
+  h2{
+    font-size: 13px;
+  }
+
+  h6{
+    font-size: 14px;
+  }
+
+  
+  h5{
+    font-size: 12px;
+  }
+
+  .esquerdo{
+    margin: 3%;  
+    width: 32% !important;
+    height: auto;
+}
+
+
+.cima{
+  margin: 7px;
+}
+
+.baixo{
+  margin: 7px;
+}
+
+dt{
+  font-size: 12px;
+}
+
+.quad{
+  width: 55% !important;
+  padding: 20px;
+  height: auto;
+
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  flex-direction: column !important;
+  align-content: center;
+}
+
+}
+
+@media only screen and (max-width: 414px) {
+  /*/////// For mobile phones: /////*/
+
+  html, body {
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    overflow: visible !important;
+  }
+
+  .container-fluid{
+    height: auto;
+    width: auto;
+  }
+
+  #ok{
+    width: 70px;
+  }
+
+  p{
+
+    font-size: 12px !important;
+
+  }
+    i { 
+      -webkit-text-stroke: 1px; 
+      font-size: 15px !important;
+      color: #be1e2d;
+  } 
+  .linkbackbase{
+   
+    color: #be1e2d;
+    font-size: 11px !important;
+ 
+}
+  h2{
+    font-size: 13px;
+  }
+
+  h6{
+    font-size: 14px;
+  }
+
+  
+  h5{
+    font-size: 12px;
+  }
+
+  .esquerdo{
+    margin: 3%;  
+    width: 32% !important;
+    height: auto;
+}
+
+
+.cima{
+  margin: 7px;
+}
+
+.baixo{
+  margin: 7px;
+}
+
+dt{
+  font-size: 12px;
+}
+
+.quad{
+  width: 55% !important;
+  padding: 20px;
+  height: auto;
+
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  flex-direction: column !important;
+  align-content: center;
+}
+
+}
+
+
+@media only screen and (max-width: 768px) {
+  /*/////// For mobile phones: /////*/
+
+  html, body {
+    
+    height: 100%;
+  }
+
+  .container-fluid{
+    height: auto;
+    width: auto;
+  }
+
+  #ok{
+    width: 70px;
+  }
+
+  p{
+
+    font-size: 14px !important;
+
+  }
+    i { 
+      -webkit-text-stroke: 1px; 
+      font-size: 25px !important;
+      color: #be1e2d;
+  } 
+  .linkbackbase{
+   
+    color: #be1e2d;
+    font-size: 15px !important;
+ 
+}
+  h2{
+    font-size: 19px;
+  }
+
+  h6{
+    font-size: 14px;
+  }
+
+  
+  h5{
+    font-size: 16px;
+  }
+
+  .esquerdo{
+    margin: 3%;  
+    width: 32% !important;
+    height: auto;
+}
+
+
+.cima{
+  margin: 7px;
+}
+
+.baixo{
+  margin: 7px;
+}
+
+dt{
+  font-size: 14px;
+}
+
+.quad{
+  width: 55% !important;
+  padding: 20px;
+  height: auto;
+  font-size: 210% !important;
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  flex-direction: column !important;
+  align-content: center;
+  
+}
+
+}
+
