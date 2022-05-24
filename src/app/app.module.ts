@@ -22,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { CriarPerguntaComponent } from './criar-pergunta/criar-pergunta.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PerguntasComponent } from './perguntas/perguntas.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { PerguntasComponent } from './perguntas/perguntas.component';
     PerguntasComponent,
     CriarPerguntaComponent,
     PerguntasComponent,
+    LoginComponent,
     
     
   ],
@@ -58,6 +60,7 @@ import { PerguntasComponent } from './perguntas/perguntas.component';
       { path: 'qa', component: QaComponent },
       { path: 'perguntas', component: PerguntasComponent },
       { path: 'criar-pergunta', component: CriarPerguntaComponent },
+      { path: 'login', component: LoginComponent },
     ])
   ],
   

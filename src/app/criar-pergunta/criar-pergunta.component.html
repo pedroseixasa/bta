@@ -2,8 +2,7 @@
 <!--Estudar formularios reativos do angular-->
 <!--Colocar as areas e categorias numa lista dentro do TS e fazer um for each no html-->
 
-
-<form [formGroup]="perguntaForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="perguntaForm" (ngSubmit)="onSubmit()" class="row g-3 needs-validation" novalidate="">
 
 
     <h3>Faça Uma Pergunta!</h3>
@@ -12,60 +11,73 @@
 
     <div class="d-flex flex-column justify-content-center">
 
-        <div class="mb-3">
-            <label class="form-label">Area</label>
-            <select class="form-select" aria-label="Default select example" formControlName="area">
-                <ng-container *ngFor="let item of areaAr; let i = index">
-                    <option value="{{item}}">{{item}}</option>
+        <div class="mb-3" bis_skin_checked="1" [class.was-validated]="perguntaForm.controls['area'].touched">
+            <label for="validationCustom04" class="form-label">Area</label>
+            <select class="form-select" aria-label="Default select example" formControlName="area" required="">
+                <ng-container *ngFor="let item of areas; let i = index">
+                    <option value="{{item.id}}">{{item.name}}</option>
                 </ng-container>
-                <!-- 
-                <option selected>Open this select menu</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option> -->
             </select>
-
+            <div class="invalid-feedback">
+                Por favor selecione a área correta.
+            </div>
 
         </div>
-        <div class="mb-3">
+        <div class="mb-3" [class.was-validated]="perguntaForm.controls['categoria'].touched">
             <label class="form-label">Categoria</label>
-            <select class="form-select" aria-label="Default select example" formControlName="categoria">
-                <ng-container *ngFor="let item of areaAr; let i = index">
-                    <option value="{{item}}">{{item}}</option>
+            <select class="form-select" aria-label="Default select example" formControlName="categoria" required="">
+                <ng-container *ngFor="let cat of categorias; let i = index">
+                    <option value="{{ cat.id }}">{{ cat.name }}</option>
                 </ng-container>
             </select>
+            <div class="invalid-feedback">
+                Por favor selecione a categoria correta.
+            </div>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3" [class.was-validated]="perguntaForm.controls['pergunta'].touched">
             <label for="txtArea" class="form-label">Pergunta</label>
-            <textarea class="form-control" formControlName="pergunta" type="text" id="txtArea" placeholder=""
-                rows="8" cols="70" style="width: 100%" required></textarea>
+            <textarea class="form-control" formControlName="pergunta" type="text" id="txtArea" placeholder="" rows="8"
+                cols="70" style="width: 100%" required></textarea>
+            <div class="invalid-feedback">
+                Este campo é obrigatório.
+            </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3" [class.was-validated]="perguntaForm.controls['respostacerta'].touched">
             <label for="correta" class="form-label">Resposta correta</label>
-            <input #inputRespostaCorreta class="form-control" formControlName="respostacerta" type="text"
-                    name="name" id="correta" placeholder="Resposta correta..." required><br>
+            <input #inputRespostaCorreta class="form-control" formControlName="respostacerta" type="text" name="name"
+                id="correta" placeholder="Resposta correta..." required>
+            <div class="invalid-feedback">
+                Este campo é obrigatório.
+            </div>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3" [class.was-validated]="perguntaForm.controls['resposta1'].touched">
             <label for="resposta1" class="form-label">Resposta Incorreta 1</label>
-            <input #inputRespostaCorreta class="form-control" formControlName="resposta1" type="text"
-                    name="name" id="resposta1" placeholder="Resposta..." required><br>
+            <input #inputRespostaCorreta class="form-control" formControlName="resposta1" type="text" name="name"
+                id="resposta1" placeholder="Resposta..." required>
+            <div class="invalid-feedback">
+                Este campo é obrigatório.
+            </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3" [class.was-validated]="perguntaForm.controls['resposta2'].touched">
             <label for="resposta2" class="form-label">Resposta Incorreta 2</label>
-            <input #inputRespostaCorreta class="form-control" formControlName="resposta2" type="text"
-                    name="name" id="resposta1" placeholder="Resposta..." required><br>
+            <input #inputRespostaCorreta class="form-control" formControlName="resposta2" type="text" name="name"
+                id="resposta2" placeholder="Resposta..." required>
+            <div class="invalid-feedback">
+                Este campo é obrigatório.
+            </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3" [class.was-validated]="perguntaForm.controls['resposta3'].touched">
             <label for="resposta3" class="form-label">Resposta Incorreta 3</label>
-            <input #inputRespostaCorreta class="form-control" formControlName="resposta3" type="text"
-                    name="name" id="resposta2" placeholder="Resposta..." required><br>
+            <input #inputRespostaCorreta class="form-control" formControlName="resposta3" type="text" name="name"
+                id="resposta3" placeholder="Resposta..." required>
+            <div class="invalid-feedback">
+                Este campo é obrigatório.
+            </div>
         </div>
     </div>
-    <div style="display: flex; justify-content: flex-end">
-        <div class="form-button mt-3">
-            <button id="submit" type="submit" class="btn btn-primary" [disabled]="!perguntaForm.valid"> Enviar</button>
-        </div>
+    <div class="form-button mt-3">
+        <button id="submit" type="submit" class="btn btn-primary"> Enviar</button>
     </div>
 </form>
-
