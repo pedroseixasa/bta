@@ -1,9 +1,11 @@
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { AreaService } from 'src/app/services/area.service';
 
-import { Area } from '../models/area.model';
-import { Categoria } from "../models/categoria.model";
+
+import { Area } from '../../models/area.model';
+import { Categoria } from "../../models/categoria.model";
 
 @Component({
   selector: 'app-criar-pergunta',
@@ -19,57 +21,13 @@ export class CriarPerguntaComponent implements OnDestroy {
   perguntaForm!: FormGroup;
   wasValidated = false;
   categorias: Categoria[] = [];
-  areas: Area[] = [
-    {
-      id: 1,
-      name: 'frontend',
-      dataCriacao: new Date(Date.now()),
-      utilizador: "string",
-      categorias: [
-        {
-          id: 1,
-          dataCriacao: new Date(Date.now()),
-          utilizador: "string",
-          idArea: 1,
-          name: "Angular"
-        },
-        {
-          id: 2,
-          dataCriacao: new Date(Date.now()),
-          utilizador: "string",
-          idArea: 1,
-          name: "Html"
-        },
-      ]
-    },
-    {
-      id: 2,
-      name: 'backend',
-      dataCriacao: new Date(Date.now()),
-      utilizador: "string",
-      categorias: [
-        {
-          id: 3,
-          dataCriacao: new Date(Date.now()),
-          utilizador: "string",
-          idArea: 2,
-          name: "java"
-        },
-        {
-          id: 4,
-          dataCriacao: new Date(Date.now()),
-          utilizador: "string",
-          idArea: 2,
-          name: "maevan"
-        },
-      ]
-    }
-  ];
+  areas: Area[] = [];
 
   private areaSub!: Subscription;
 
-  constructor() {
+  constructor(private areaService: AreaService) {
     this.setupForm();
+    this.areas = this.areaService.getAreas();
   }
 
   ngOnDestroy(): void {
@@ -135,7 +93,7 @@ export class CriarPerguntaComponent implements OnDestroy {
         return area.id === +idArea;
       })!;
 
-      this.categorias = selectedAarea.categorias;
+      this.categorias = selectedAarea.categorias!;
 
     });
   }

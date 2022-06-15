@@ -6,5 +6,5 @@ export interface Area {
     name: string;
     dataCriacao: Date;
     utilizador: string;
-    categorias: Categoria[];
+    categorias?: Categoria[];
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AngularFireModule } from '@angular/fire/compat';
@@ -10,19 +11,28 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
-import { StudyComponent } from './study/study.component';
-import { DocumentationComponent } from './documentation/documentation.component';
-import { FrontendComponent } from './frontend/frontend.component';
-import { BackendComponent } from './backend/backend.component';
-import { MobileComponent } from './mobile/mobile.component';
-import { QaComponent } from './qa/qa.component';
+import { StudyComponent } from './views/study/study.component';
+import { DocumentationComponent } from './views/documentation/documentation.component';
+import { FrontendComponent } from './views/frontend/frontend.component';
+import { BackendComponent } from './views/backend/backend.component';
+import { MobileComponent } from './views/mobile/mobile.component';
+import { QaComponent } from './views/qa/qa.component';
 
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { CriarPerguntaComponent } from './criar-pergunta/criar-pergunta.component';
+import { HomeComponent } from './views/home/home.component';
+import { CriarPerguntaComponent } from './views/criar-pergunta/criar-pergunta.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PerguntasComponent } from './perguntas/perguntas.component';
-import { LoginComponent } from './login/login.component';
+import { PerguntasComponent } from './views/perguntas/perguntas.component';
+import { LoginComponent } from './views/login/login.component';
+import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
+import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { RegistoComponent } from './views/registo/registo.component';
+import { EsqueceuPasswordComponent } from './views/esqueceu-password/esqueceu-password.component';
+import { PerguntasService } from './services/perguntas.service';
+import { AreaService } from './services/area.service';
+import { CalculadoraService } from './services/calculadora.service';
+import { CalculadoraComponent } from './calculadora/calculadora.component';
+
 
 
 @NgModule({
@@ -39,32 +49,26 @@ import { LoginComponent } from './login/login.component';
     CriarPerguntaComponent,
     PerguntasComponent,
     LoginComponent,
-    
-    
+    DefaultLayoutComponent,
+    LoginLayoutComponent,
+    RegistoComponent,
+    EsqueceuPasswordComponent,
+    CalculadoraComponent,
+
+
+
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    RouterModule.forRoot([
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
-      { path: 'study', component: StudyComponent },
-      { path: 'documentation', component: DocumentationComponent },
-      { path: 'frontend', component: FrontendComponent },
-      { path: 'backend', component: BackendComponent },
-      { path: 'mobile', component: MobileComponent },
-      { path: 'qa', component: QaComponent },
-      { path: 'perguntas', component: PerguntasComponent },
-      { path: 'criar-pergunta', component: CriarPerguntaComponent },
-      { path: 'login', component: LoginComponent },
-    ])
+    AngularFireAuthModule
   ],
-  
-  providers: [],
+
+  providers: [AreaService, PerguntasService, CalculadoraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

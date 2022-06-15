@@ -1,5 +1,18 @@
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
 
+ body{
+     overflow: visible !important;
+ }
+
+ h3 {
+    text-transform: uppercase;
+    color: #666666;
+    text-align: left;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
 /*
 .esquerdoo{
     width: 30%;

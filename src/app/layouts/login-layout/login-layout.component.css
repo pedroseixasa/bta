@@ -1,0 +1,30 @@
+.conjunto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+
+img {
+  width: 400px;
+}
+.esquerda {
+  width: 35%;
+  align-self: center;
+  margin-bottom: 2%;
+}
+
+.direita {
+  width: 30%;
+  align-self: center;
+}
+
+
+h3 {
+  padding-bottom: 15px;
+  text-align: left;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
