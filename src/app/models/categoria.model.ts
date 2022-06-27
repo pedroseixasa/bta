@@ -1,7 +1,7 @@
 
 export interface Categoria {
 
-    id: number;
+    id: string;
     name: string;
     dataCriacao: Date;
     utilizador: string;

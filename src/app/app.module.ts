@@ -28,10 +28,16 @@ import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { RegistoComponent } from './views/registo/registo.component';
 import { EsqueceuPasswordComponent } from './views/esqueceu-password/esqueceu-password.component';
-import { PerguntasService } from './services/perguntas.service';
 import { AreaService } from './services/area.service';
 import { CalculadoraService } from './services/calculadora.service';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
+
+import { ExamepageComponent } from './views/examepage-android/examepage.component';
+import { ExamepageIosComponent } from './views/examepage-ios/examepage-ios.component';
+import { ExamepageFrontendComponent } from './views/examepage-frontend/examepage-frontend.component';
+import { ExamepageBackendComponent } from './views/examepage-backend/examepage-backend.component';
+import { ExamepageQaComponent } from './views/examepage-qa/examepage-qa.component';
+import { ExamLayoutComponent } from './layouts/exam-layout/exam-layout.component';
 
 
 
@@ -54,6 +60,12 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
     RegistoComponent,
     EsqueceuPasswordComponent,
     CalculadoraComponent,
+    ExamepageComponent,
+    ExamepageIosComponent,
+    ExamepageFrontendComponent,
+    ExamepageBackendComponent,
+    ExamepageQaComponent,
+    ExamLayoutComponent
 
 
 
@@ -68,7 +80,7 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
     AngularFireAuthModule
   ],
 
-  providers: [AreaService, PerguntasService, CalculadoraService],
+  providers: [AreaService, CalculadoraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

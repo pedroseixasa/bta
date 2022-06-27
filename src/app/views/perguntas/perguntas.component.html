@@ -1,4 +1,7 @@
-<button routerLink="/criar-pergunta" class="btn btn-primary" >Escrever uma pergunta</button>
+<div style="display: flex;flex-direction: column;align-items: flex-end;">
+<button routerLink="/criar-pergunta"class="btn btn-primary " >Escrever uma pergunta</button>
+</div>
+<hr>
 
 <table class="table table-hover">
     <thead>
@@ -20,6 +23,7 @@
           <td>{{ pergunta.descricao }}</td>
           <td>{{ pergunta.status }}</td>
           <td><a href="/editar-pergunta">Editar</a></td>
+          <td><button (click)="deletePosts()">Apagar</button></td>
         </tr>
       </tbody>
  </table>

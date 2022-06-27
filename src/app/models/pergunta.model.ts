@@ -4,7 +4,7 @@ import { OpcoesPergunta } from "./opcoes-pergunta.model";
 
 export interface Pergunta {
 
-    id: number;
+    id?: string;
     descricao: string;
     status: string;
     dataCriacao: Date;
@@ -13,5 +13,6 @@ export interface Pergunta {
     area: Area;
     idCategoria: number;
     idArea: number;
+    respostaUtlizador: string;
     opcoes: OpcoesPergunta[];
 }

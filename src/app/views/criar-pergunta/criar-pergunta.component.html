@@ -35,9 +35,9 @@
             </div>
         </div>
 
-        <div class="mb-3" [class.was-validated]="perguntaForm.controls['pergunta'].touched">
+        <div class="mb-3" [class.was-validated]="perguntaForm.controls['descricao'].touched">
             <label for="txtArea" class="form-label">Pergunta</label>
-            <textarea class="form-control" formControlName="pergunta" type="text" id="txtArea" placeholder="" rows="8"
+            <textarea class="form-control" formControlName="descricao" type="text" id="txtArea" placeholder="" rows="8"
                 cols="70" style="width: 100%" required></textarea>
             <div class="invalid-feedback">
                 Este campo é obrigatório.

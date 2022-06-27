@@ -8,20 +8,20 @@ import { Area } from "../models/area.model";
 export class AreaService {
     private areas: Area[] = [
         {
-            id: 1,
+            id: "frontend",
             name: 'frontend',
             dataCriacao: new Date(Date.now()),
             utilizador: "string",
             categorias: [
                 {
-                    id: 1,
+                    id: "Angular",
                     dataCriacao: new Date(Date.now()),
                     utilizador: "string",
                     idArea: 1,
                     name: "Angular"
                 },
                 {
-                    id: 2,
+                    id: "html",
                     dataCriacao: new Date(Date.now()),
                     utilizador: "string",
                     idArea: 1,
@@ -30,20 +30,20 @@ export class AreaService {
             ]
         },
         {
-            id: 2,
+            id: "backend",
             name: 'backend',
             dataCriacao: new Date(Date.now()),
             utilizador: "string",
             categorias: [
                 {
-                    id: 3,
+                    id: "java",
                     dataCriacao: new Date(Date.now()),
                     utilizador: "string",
                     idArea: 2,
                     name: "java"
                 },
                 {
-                    id: 4,
+                    id: "maevan",
                     dataCriacao: new Date(Date.now()),
                     utilizador: "string",
                     idArea: 2,

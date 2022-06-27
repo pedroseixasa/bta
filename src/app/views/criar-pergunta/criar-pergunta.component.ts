@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -25,7 +26,7 @@ export class CriarPerguntaComponent implements OnDestroy {
 
   private areaSub!: Subscription;
 
-  constructor(private areaService: AreaService) {
+  constructor(private areaService: AreaService, private http: HttpClient) {
     this.setupForm();
     this.areas = this.areaService.getAreas();
   }
@@ -38,6 +39,9 @@ export class CriarPerguntaComponent implements OnDestroy {
     // TODO: Use EventEmitter with form value
     console.warn(this.perguntaForm.value);
 
+    // enviar dados
+    this.http.post('https://btapp-b6ea9-default-rtdb.europe-west1.firebasedatabase.app/perguntas.json', this.perguntaForm.value).subscribe(responseData);
+
     if (this.perguntaForm.valid === true) {
       window.location.href = '/perguntas';
     }
@@ -49,16 +53,17 @@ export class CriarPerguntaComponent implements OnDestroy {
     const now = new Date();
 
     this.perguntaForm = new FormGroup({
-      data: new FormControl(now),
+      dataCriacao: new FormControl(now),
       utilizador: new FormControl('teste123'),
       status: new FormControl('Válido'),
       area: new FormControl(''),
       categoria: new FormControl(''),
-      pergunta: new FormControl(''),
+      descricao: new FormControl(''),
       respostacerta: new FormControl(''),
       resposta1: new FormControl(''),
       resposta2: new FormControl(''),
       resposta3: new FormControl(''),
+      
     });
 
     this.areaSub = this.perguntaForm.controls['area'].valueChanges.subscribe((idArea: string) => {
@@ -90,12 +95,16 @@ export class CriarPerguntaComponent implements OnDestroy {
       //  })!.categorias;
 
       const selectedAarea = this.areas.find((area: Area, index: number, array: Area[]) => {
-        return area.id === +idArea;
+        return area.id === idArea;
       })!;
 
       this.categorias = selectedAarea.categorias!;
 
     });
   }
+}
+
+function responseData(responseData: any) {
+  throw new Error('Function not implemented.');
 }
 
