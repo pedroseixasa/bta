@@ -10,6 +10,10 @@ html, body {
   
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 
 /*TODO: pesquisar como mudar a variavel global da cor primary */
 
@@ -316,3 +320,6 @@ dt{
 
 }
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

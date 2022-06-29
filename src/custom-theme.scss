@@ -1,0 +1,73 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$dark-text: #333333;
+$light-text: #FFFFFF;
+
+$bta-primary-pallete: (
+  50: #b39fa1,
+  100: #b27a80,
+  200: #b8676f,
+  300: #c25560,
+  400: #bc424e,
+  500: #be1e2d,
+  600: #ab1b2a,
+  700: #911723,
+  800: #6f111b,
+  900: #4c0b11,
+  A100: #f6776b,
+  A200: #be1e2d,
+  A400: #9c1825,
+  A700: #881521,
+  contrast: (
+    50: $dark-text,
+    100: $dark-text,
+    200: $dark-text,
+    300: $dark-text,
+    400: $dark-text,
+    500: $light-text,
+    600: $light-text,
+    700: $light-text,
+    800: $light-text,
+    900: $light-text,
+    A100: $dark-text,
+    A200: $dark-text,
+    A400: $light-text,
+    A700: $light-text,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$bta-primary: mat.define-palette($bta-primary-pallete);
+$bta-accent: mat.define-palette($bta-primary-pallete, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$bta-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$bta-theme: mat.define-light-theme((
+  color: (
+    primary: $bta-primary,
+    accent: $bta-accent,
+    warn: $bta-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+//@include mat.core-theme($bta-theme);
+//@include mat.radio-theme($bta-theme);
+@include mat.all-component-themes($bta-theme);
+

@@ -1,9 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, DoCheck, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { Router } from '@angular/router';
+import { now } from 'jquery';
 import { Subscription } from 'rxjs';
-import { AreaService } from 'src/app/services/area.service';
+import { BackendCategories, Category, FrontendCategories, MobileCategories, QACategories } from 'src/app/models/categories.model';
+import { QuestionModel, QuestionType, Role, Status } from 'src/app/models/questions.model';
+import { RoleService } from 'src/app/services/role.service';
 
+import { v4 as id } from 'uuid';
 
 import { Area } from '../../models/area.model';
 import { Categoria } from "../../models/categoria.model";
@@ -14,97 +20,152 @@ import { Categoria } from "../../models/categoria.model";
   styleUrls: ['./criar-pergunta.component.css'],
   // encapsulation: ViewEncapsulation.
 })
-export class CriarPerguntaComponent implements OnDestroy {
+export class CriarPerguntaComponent implements OnDestroy, DoCheck {
   // @viewChild @viewChildreen
   @ViewChild('inputRespostaCorreta') someService!: ElementRef;
 
+  QuestionType = QuestionType;
+
   selected: any;
-  perguntaForm!: FormGroup;
+  questionForm!: FormGroup;
   wasValidated = false;
-  categorias: Categoria[] = [];
-  areas: Area[] = [];
+  categories: Category[] = [];
+  roles: Role[] = [];
 
-  private areaSub!: Subscription;
+  private roleSub!: Subscription;
 
-  constructor(private areaService: AreaService, private http: HttpClient) {
+  constructor(
+    private roleService: RoleService,
+    private http: HttpClient,
+    private router: Router
+    ) {
     this.setupForm();
-    this.areas = this.areaService.getAreas();
+    this.roles = this.roleService.getRoles();
+  }
+
+  ngDoCheck(): void {
+    const alphabeth = Array.from(Array(26)).map((_, index) => index + 65).map(charCode => String.fromCharCode(charCode));
+    this.answersArray.forEach((answer, index) => {
+      answer.patchValue({
+        code: alphabeth[index]
+      })
+    });
   }
 
   ngOnDestroy(): void {
-    this.areaSub.unsubscribe();
+    this.roleSub.unsubscribe();
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.perguntaForm.value);
+    if (this.questionForm.invalid) {
+      this.questionForm.markAllAsTouched();
+      this.questionForm.updateValueAndValidity();
+      return;
+    }
 
     // enviar dados
-    this.http.post('https://btapp-b6ea9-default-rtdb.europe-west1.firebasedatabase.app/perguntas.json', this.perguntaForm.value).subscribe(responseData);
-
-    if (this.perguntaForm.valid === true) {
-      window.location.href = '/perguntas';
-    }
+    this.http.post('https://btapp-b6ea9-default-rtdb.europe-west1.firebasedatabase.app/perguntas.json', this.convertToQuestion(this.questionForm)).subscribe(this.responseData.bind(this));
 
     this.wasValidated = true;
   }
 
-  private setupForm(): void {
-    const now = new Date();
+  private responseData(responseData: any) {
+    this.router.navigate(['/perguntas']);
+  }
 
-    this.perguntaForm = new FormGroup({
-      dataCriacao: new FormControl(now),
-      utilizador: new FormControl('teste123'),
-      status: new FormControl('Válido'),
-      area: new FormControl(''),
-      categoria: new FormControl(''),
-      descricao: new FormControl(''),
-      respostacerta: new FormControl(''),
-      resposta1: new FormControl(''),
-      resposta2: new FormControl(''),
-      resposta3: new FormControl(''),
+  private convertToQuestion(form: FormGroup): QuestionModel {
+    return ({
+      id: id(),
+      type: form.get('type').value,
+      category: form.get('category').value,
+      role: form.get('role').value,
+      question: form.get('question').value,
+      answers: form.get('answers').value,
+      correctAnswers: form.get('correctAnswers').value,
+      userAnswer: null,
+      status: Status.ACCEPTED,
+      creationDate: new Date(),
+      createdBy: 'teste123',
+      ...(form.get('snippet').value && { snippet: form.get('snippet').value })
+
+    })
+  }
+
+
+
+  private setupForm(): void {
+    this.questionForm = new FormGroup({
+      type: new FormControl(QuestionType.SINGLE_CHOICE),
+      role: new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required),
+      question: new FormControl('', Validators.required),
+      userAnswer: new FormControl(null),
+      snippet: new FormControl(''),
+      answers: new FormArray([
+        this.generateAnswer(),
+        this.generateAnswer()
+      ]),
+      correctAnswers: new FormControl('', Validators.required)
       
     });
 
-    this.areaSub = this.perguntaForm.controls['area'].valueChanges.subscribe((idArea: string) => {
-      // for(let a=0; this.areas.length>a; a++)
-      // {
-      //   if(this.areas[a].id == idArea)
-      //   {
-      //    this.categorias = this.areas[a].categorias;
-      //   }
-      //}
-
-      //   this.areas.forEach((value: Area, index: number, array: Area[]) => {
-      //     if(this.areas[index].id == idArea)
-      //     {
-      //       this.categorias = this.areas[index].categorias;
-      //     }
-      //   })
-
-      //   this.categorias = this.areas.filter((area: Area, index: number, array: Area[]) => {
-      //      return area.id === idArea;
-      //   })[0].categorias;
-
-      //   this.categorias = this.areas.filter((area: Area, index: number, array: Area[]) => {
-      //      return area.id === idArea;
-      //   }).pop()!.categorias;
-
-      //   this.categorias = this.areas.find((area: Area, index: number, array: Area[]) => {
-      //     return area.id === idArea;
-      //  })!.categorias;
-
-      const selectedAarea = this.areas.find((area: Area, index: number, array: Area[]) => {
-        return area.id === idArea;
-      })!;
-
-      this.categorias = selectedAarea.categorias!;
-
+    this.roleSub = this.questionForm.controls['role'].valueChanges.subscribe((role: string) => {
+        switch(role) {
+          case Role.FRONTEND:
+            return this.categories = Object.values(FrontendCategories);
+          case Role.BACKEND:
+            return this.categories = Object.values(BackendCategories);
+          case Role.MOBILE:
+            return this.categories = Object.values(MobileCategories);
+          case Role.QA:
+            return this.categories = Object.values(QACategories);
+          default:
+            return this.categories = [];
+        }
     });
   }
+
+  get answersArray(): FormGroup[] {
+    return (this.questionForm.get('answers') as FormArray).controls as FormGroup[];
+  }
+
+  get completeAnswers()  {
+    return this.answersArray.filter(group => {
+      return group.get('code').value && group.get('text').value;
+    })
+  }
+
+  onAddAnswer() {
+    const answersArray = this.questionForm.get('answers') as FormArray;
+    answersArray.push(this.generateAnswer());
+  }
+
+  onDeleteAnswer(answerToDelete: number) {
+    const answersArray = this.questionForm.get('answers') as FormArray;
+    answersArray.removeAt(answerToDelete);
+  }
+
+  private generateAnswer() {
+    return new FormGroup({
+      code: new FormControl('', Validators.required),
+      text: new FormControl('', Validators.required)
+    });
+  }
+
+  onCheckboxChange(matCheckboxChange: MatCheckboxChange) {
+    const correctAnswersControl = this.questionForm.get('correctAnswers');
+    let correctAnswer = Array.isArray(correctAnswersControl.value) && correctAnswersControl.value || [];
+    if (matCheckboxChange.checked) {
+      correctAnswer.push(matCheckboxChange.source.value);
+    } else {
+      correctAnswer = correctAnswer.filter(answer => answer !== matCheckboxChange.source.value);
+    }
+    correctAnswersControl.setValue(correctAnswer);
+    console.log(correctAnswersControl.value)
+  }
+
+  
 }
 
-function responseData(responseData: any) {
-  throw new Error('Function not implemented.');
-}
+
 
