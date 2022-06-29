@@ -21,14 +21,13 @@ import { QaComponent } from './views/qa/qa.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { CriarPerguntaComponent } from './views/criar-pergunta/criar-pergunta.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerguntasComponent } from './views/perguntas/perguntas.component';
 import { LoginComponent } from './views/login/login.component';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { RegistoComponent } from './views/registo/registo.component';
 import { EsqueceuPasswordComponent } from './views/esqueceu-password/esqueceu-password.component';
-import { AreaService } from './services/area.service';
 import { CalculadoraService } from './services/calculadora.service';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 
@@ -38,7 +37,10 @@ import { ExamepageFrontendComponent } from './views/examepage-frontend/examepage
 import { ExamepageBackendComponent } from './views/examepage-backend/examepage-backend.component';
 import { ExamepageQaComponent } from './views/examepage-qa/examepage-qa.component';
 import { ExamLayoutComponent } from './layouts/exam-layout/exam-layout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -73,14 +75,18 @@ import { ExamLayoutComponent } from './layouts/exam-layout/exam-layout.component
   imports: [
     HttpClientModule,
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MatRadioModule,
+    MatCheckboxModule
   ],
 
-  providers: [AreaService, CalculadoraService],
+  providers: [ CalculadoraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -33,7 +33,6 @@ const routes: Routes = [
     component: DefaultLayoutComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'study', component: StudyComponent },
       { path: 'documentation', component: DocumentationComponent },
       { path: 'frontend', component: FrontendComponent },
       { path: 'backend', component: BackendComponent },
