@@ -9,7 +9,7 @@ export class AreaService {
     private areas: Area[] = [
         {
             id: "frontend",
-            name: 'frontend',
+            name: 'Frontend',
             dataCriacao: new Date(Date.now()),
             utilizador: "string",
             categorias: [
@@ -25,7 +25,28 @@ export class AreaService {
                     dataCriacao: new Date(Date.now()),
                     utilizador: "string",
                     idArea: 1,
-                    name: "Html"
+                    name: "Rxjs"
+                },
+                {
+                    id: "html",
+                    dataCriacao: new Date(Date.now()),
+                    utilizador: "string",
+                    idArea: 1,
+                    name: "Backbase"
+                },
+                {
+                    id: "html",
+                    dataCriacao: new Date(Date.now()),
+                    utilizador: "string",
+                    idArea: 1,
+                    name: "CSS"
+                },
+                {
+                    id: "html",
+                    dataCriacao: new Date(Date.now()),
+                    utilizador: "string",
+                    idArea: 1,
+                    name: "Javascript"
                 },
             ]
         },

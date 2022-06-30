@@ -13,6 +13,10 @@ export interface Pergunta {
     area: Area;
     idCategoria: number;
     idArea: number;
-    respostaUtlizador: string;
+    resposta1: string;
+    resposta2: string;
+    resposta3: string;
+    respostacerta: string;
+    respostaUtilizador: string;
     opcoes: OpcoesPergunta[];
 }

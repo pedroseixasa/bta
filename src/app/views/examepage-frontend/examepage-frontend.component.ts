@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Pergunta } from 'src/app/models/pergunta.model';
 import { map } from 'rxjs';
+import { OpcoesPergunta } from 'src/app/models/opcoes-pergunta.model';
 
 @Component({
   selector: 'app-examepage-frontend',
@@ -10,17 +11,25 @@ import { map } from 'rxjs';
 })
 export class ExamepageFrontendComponent implements OnInit {
 
+  opcoes: OpcoesPergunta[] = [];
+
   perguntas: Pergunta[] = [];
 
   currentQuestion = 0;
 
-  nextQuestion(){
+  Question = 1;
 
+  area = "ola";
+
+
+  nextQuestion(){
+    this.Question ++;
     this.currentQuestion= this.currentQuestion + 1;
   }
 
   ngOnInit() {
     this.fetchPosts();
+
   }
 
   onFetchPosts(){
@@ -29,7 +38,9 @@ export class ExamepageFrontendComponent implements OnInit {
 
   
   constructor(private http:HttpClient) {
-    //
+   
+
+
    } 
   
   private fetchPosts(){
