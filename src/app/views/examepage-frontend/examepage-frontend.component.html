@@ -1,50 +1,76 @@
+<div class="float-container">
+<br>
 
-<div *ngIf="perguntas[currentQuestion].area">
 
-    <div >
-        <p>{{ Question }}. <b>{{ perguntas[currentQuestion].descricao }}</b></p>
+  <div class="float-child">
+    <div>
+
+      <p>
+        {{ Question }}. <b>{{ perguntas[currentQuestion]?.question }}</b>
+      </p>
+      <pre *ngIf="perguntas[currentQuestion]?.type === QuestionType.CODE_REVIEW">
+        {{ perguntas[currentQuestion]?.snippet }} 
+    </pre>
     </div>
 
     <div class="d-flex flex-column">
+      <div *ngIf="perguntas[currentQuestion]?.answers">
+        <div class="form-check">
+          <div *ngIf="perguntas[currentQuestion].type === QuestionType.MULTI_CHOICE">
+            <p *ngFor="
+              let answers of perguntas[currentQuestion].answers;
+              index as i
+            ">
+              <mat-checkbox>{{ answers.code }}. {{ answers.text }}</mat-checkbox>
+            </p>
+          </div>
 
-            <div class="form-check">
-            <input class="form-check-input" type="checkbox" #1 value="1" id="1">
-            <label class="form-check-label" for="1">
-            <p> {{ perguntas[currentQuestion].resposta1 }}  </p> 
-            </label>
-            </div>
-            
+          <div *ngIf="perguntas[currentQuestion].type !== QuestionType.MULTI_CHOICE">
+            <mat-radio-group aria-labelledby="example-radio-group-label"
+              class="example-radio-group d-flex flex-column ">
+              <mat-radio-button class="example-radio-button mb-3" *ngFor="
+                let answers of perguntas[currentQuestion].answers;
+                index as i
+              " [value]="answers.code">
+                {{ answers.code }}. {{ answers.text }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
 
-            <div class="form-check">
-            <input class="form-check-input" type="checkbox" #2 value="2" id="2">
-            <label class="form-check-label" for="2">
-            <p> {{ perguntas[currentQuestion].resposta2 }}  </p> 
-            </label>
-            </div>
 
-            <div class="form-check">
-            <input class="form-check-input" type="checkbox" #3 value="3" id="3">
-            <label class="form-check-label" for="3">
-            <p> {{ perguntas[currentQuestion].resposta3 }}  </p> 
-            </label>
-            </div>
 
-            <div class="form-check">
-            <input class="form-check-input" type="checkbox" #4 value="4" id="4">
-            <label class="form-check-label" for="4">
-            <p> {{ perguntas[currentQuestion].respostacerta }}  </p> 
-            </label>
-            </div>
-  
+
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script>
-
-
-      </script>  
+  <div class="float-childireita">
+    <progress-ring [currentQuestion]="currentQuestion"></progress-ring>
+  </div>
 
 </div>
 
-<div style="display: flex;flex-direction: column;align-items: flex-end;">
-    <button type="button" (click)="nextQuestion()"  class="btn btn-danger btn-lg">Next</button>
+
+
+
+<div class="float-container2">
+
+  <div style="display: flex;justify-content: space-between;">
+
+    <div>
+      <button type="button" (click)="backQuestion()" class="btn btn-danger btn-lg">
+        Back
+      </button>
+    </div>
+
+    <div>
+      <button type="button" (click)="nextQuestion()" class="btn btn-danger btn-lg">
+        Next
+      </button>
+    </div>
+
+
+  </div>
+
 </div>

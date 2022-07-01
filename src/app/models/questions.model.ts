@@ -32,9 +32,10 @@ export interface QuestionModel {
     category: Category,
     role: Role,
     question: string,
-    answers: Answers,
+    answers: Answers[],
     correctAnswers: string | string[],
-    userAnswer: string | string[]
+    userAnswer: string | string[],
+    snippet?: string
 }
 
 export interface MultiChoiceModel extends QuestionModel {

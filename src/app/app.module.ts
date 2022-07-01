@@ -41,6 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ProgressRingComponent } from './views/progress/progress-ring.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ExamepageFrontendComponent,
     ExamepageBackendComponent,
     ExamepageQaComponent,
-    ExamLayoutComponent
+    ExamLayoutComponent,
+    ProgressRingComponent
 
 
 

@@ -1,0 +1,28 @@
+.float-container {
+    display: flex;
+}
+
+.float-childireita {
+    width: 10%;   
+    padding: 20px;
+
+}  
+
+.float-child{
+    width: 90%;   
+    padding: 20px;
+} 
+
+@media only screen and (max-width: 650px)  {
+
+    .float-container {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .float-childireita {
+        display: flex;
+        align-items: center;
+    }  
+  
+}
